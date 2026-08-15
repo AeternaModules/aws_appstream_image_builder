@@ -28,7 +28,7 @@ output "appstream_image_builders_display_name" {
 }
 output "appstream_image_builders_domain_join_info" {
   description = "Map of domain_join_info values across all appstream_image_builders, keyed the same as var.appstream_image_builders"
-  value       = { for k, v in aws_appstream_image_builder.appstream_image_builders : k => v.domain_join_info if v.domain_join_info != null && length(v.domain_join_info) > 0 }
+  value       = { for k, v in aws_appstream_image_builder.appstream_image_builders : k => one(v.domain_join_info) if v.domain_join_info != null && length(v.domain_join_info) > 0 }
 }
 output "appstream_image_builders_enable_default_internet_access" {
   description = "Map of enable_default_internet_access values across all appstream_image_builders, keyed the same as var.appstream_image_builders"
@@ -72,6 +72,6 @@ output "appstream_image_builders_tags_all" {
 }
 output "appstream_image_builders_vpc_config" {
   description = "Map of vpc_config values across all appstream_image_builders, keyed the same as var.appstream_image_builders"
-  value       = { for k, v in aws_appstream_image_builder.appstream_image_builders : k => v.vpc_config if v.vpc_config != null && length(v.vpc_config) > 0 }
+  value       = { for k, v in aws_appstream_image_builder.appstream_image_builders : k => one(v.vpc_config) if v.vpc_config != null && length(v.vpc_config) > 0 }
 }
 
